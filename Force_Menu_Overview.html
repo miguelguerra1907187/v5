@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Force Menu - Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#0D0E11; --card:#13151A; --bg3:#1A1D24; --line:#252830; --line2:#2E323D;
+  --text:#E8EAF0; --muted:#9094A4; --text3:#5A5F72;
+  --f1:#4C8DF6; --f1-soft:#0b1424; --f1-dim:#1f3f78;
+  --f2:#FF9500; --f2-soft:#1a0e00; --f2-dim:#8A5000;
+  --ok:#1AE87A; --ok-soft:#071a10; --ok-dim:#0F6E40;
+  --auto:#B09EFF; --auto-soft:#120f2a; --auto-dim:#5E52B0;
+  --warn:#FF4D4D; --warn-soft:#1a0808; --warn-dim:#8A1F1F;
+  --yellow:#FFD43B; --key:#1A1D24;
+  --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 var(--sans)}
+.wrap{max-width:1000px;margin:0 auto;padding:32px 16px 64px}
+header{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 24px 22px;margin-bottom:22px}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text3);background:var(--bg3);border:1px solid var(--line);padding:5px 12px;border-radius:4px;margin-bottom:12px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+h1{font-size:2rem;font-weight:600;margin:0 0 8px;line-height:1.2}
+.lead{font-size:15px;color:var(--muted);max-width:760px;margin:0}
+h2{font:600 13px var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:40px 0 14px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:3px;height:14px;background:var(--line2);border-radius:2px}
+h3{font-size:14px;font-weight:600;margin:0 0 6px}
+p{margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.pill{display:inline-block;font:600 10px var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:4px;border:1px solid}
+.f1{background:var(--f1-soft);color:var(--f1);border-color:var(--f1-dim)}
+.f2{background:var(--f2-soft);color:var(--f2);border-color:var(--f2-dim)}
+.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok-dim)}
+.auto{background:var(--auto-soft);color:var(--auto);border-color:var(--auto-dim)}
+.warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn-dim)}
+kbd{font:600 12px var(--mono);background:var(--key);border:1px solid var(--line2);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--text)}
+code{font:13px var(--mono);background:var(--key);border-radius:4px;padding:1px 5px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text3)}
+td{color:var(--muted)} td:first-child{color:var(--text)}
+.tablewrap{overflow-x:auto}
+.check{list-style:none;padding:0;margin:0}
+.check li{padding:6px 0 6px 28px;position:relative;color:var(--muted);font-size:14px}
+.check li strong{color:var(--text)}
+.check li::before{content:"\2713";position:absolute;left:4px;color:var(--ok);font-weight:700}
+.x li::before{content:"\2715";color:var(--warn)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.step{background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px}
+.arrow{color:var(--text3)}
+.bar{display:inline-flex;gap:6px;background:#000;border:1px solid #222;border-radius:10px;padding:6px}
+.btn{font:600 13px var(--mono);border-radius:7px;padding:6px 12px;border:1.5px solid}
+.b-pro{color:var(--f1);border-color:var(--f1);background:var(--f1-soft)}
+.b-ok{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+.b-auto{color:var(--auto);border-color:var(--auto);background:var(--auto-soft)}
+.big{font:600 1.4rem var(--mono);line-height:1.2;margin-bottom:6px}
+.grid.g3 .card:nth-child(1) .big{color:var(--f1)}
+.grid.g3 .card:nth-child(2) .big{color:var(--ok)}
+.grid.g3 .card:nth-child(3) .big{color:var(--auto)}
+.muted{color:var(--muted)}
+.callout{background:var(--card);border:1px solid var(--line2);border-left:3px solid var(--yellow);border-radius:10px;padding:14px 18px;color:var(--muted)}
+.callout strong{color:var(--text)}
+footer{margin-top:40px;font:12px var(--mono);color:var(--text3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Billing &middot; Trouble bills &middot; Internal productivity tool</div>
+  <h1>Force Menu</h1>
+  <p class="lead">A small keyboard-driven helper that writes FORCE 1 / FORCE 2 notes in the standard format and, on request, enters them in the ERP and the intranet using the same clicks and keystrokes a person would. It runs only on the user's PC and never sends, receives or stores bill information.</p>
+</header>
+
+<div class="callout">
+  <strong>In one sentence:</strong> it replaces typing and copy-pasting the same force notes by hand, while the clerk still reviews and saves every note personally.
+</div>
+
+<h2>The problem it solves</h2>
+<div class="grid g3">
+  <div class="card"><h3>Repetitive typing</h3><p class="muted">Every trouble bill needs a force note in the ERP and an informative note in the intranet, often with a "Hold at term ### due to..." text. Typing them by hand is slow and easy to get wrong.</p></div>
+  <div class="card"><h3>Inconsistent wording</h3><p class="muted">Free-typed notes vary from person to person. The menu always produces the same wording for the same issue.</p></div>
+  <div class="card"><h3>Many small steps</h3><p class="muted">Copying the PRO, searching it in the intranet (and in the old intranet for hazmat), opening the note screens... the same clicks dozens of times per shift.</p></div>
+</div>
+
+<h2>How it works</h2>
+<div class="grid g2">
+  <div class="card">
+    <h3>1. Build the note (keyboard only)</h3>
+    <p class="muted">Press <kbd>Del</kbd> to open the menu. Choose by elimination: once FORCE 1 is chosen, FORCE 2 options disappear; once an issue is chosen, only its options remain. Several issues can be combined with the numeric keypad.</p>
+    <div class="flow" style="margin-top:10px">
+      <span class="step"><span class="pill f1">F1</span> or <span class="pill f2">F2</span></span><span class="arrow">&rarr;</span>
+      <span class="step">Issue</span><span class="arrow">&rarr;</span>
+      <span class="step">Fields</span><span class="arrow">&rarr;</span>
+      <span class="step">Terminal <span class="muted">(if hold)</span></span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>2. Enter it (one click, optional)</h3>
+    <p class="muted">A small button bar sits in the corner of the screen. It repeats the exact steps the clerk would do with mouse and keyboard, then stops so the clerk can review and save.</p>
+    <div style="margin-top:12px" class="bar">
+      <span class="btn b-pro">PRO</span><span class="btn b-ok">ERP</span><span class="btn b-ok">INTRA</span><span class="btn b-auto">AUTO</span>
+    </div>
+  </div>
+</div>
+
+<h2>The four buttons</h2>
+<div class="card tablewrap">
+<table>
+  <tr><th>Button</th><th>What it does</th></tr>
+  <tr><td><span class="pill f1">PRO</span></td><td>Copies the PRO of the open bill and searches it in the intranet. For FORCE 2, and FORCE 1 bills that need a hold, it also searches the old intranet. It picks the right version automatically.</td></tr>
+  <tr><td><span class="pill ok">ERP</span></td><td>Opens Special Instructions in the ERP and pastes the force note (FORCE1 / FORCE2 + issue).</td></tr>
+  <tr><td><span class="pill ok">INTRA</span></td><td>Pastes the informative / hold note in the intranet.</td></tr>
+  <tr><td><span class="pill auto">AUTO</span></td><td>Chains the steps: <em>FORCE 1 without hold</em>: PRO &rarr; intranet note &rarr; ERP note. <em>With hold</em>: PRO &rarr; asks for the terminal &rarr; intranet note &rarr; ERP note.</td></tr>
+</table>
+</div>
+
+<h2>Business rules it follows</h2>
+<div class="grid g2">
+  <div class="card">
+    <h3>Hold rules</h3>
+    <ul class="check">
+      <li>FORCE 2 (hazmat) always carries a hold and a terminal.</li>
+      <li>FORCE 1 carries a hold only when there is a consignee issue.</li>
+      <li>Prohibited freight: shows a red reminder to use the <strong>current</strong> terminal.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Safety rules</h3>
+    <ul class="check">
+      <li>Never saves in the ERP or intranet. The clerk always reviews and saves.</li>
+      <li>Each note can be pasted once, so the previous bill's note is never pasted by mistake.</li>
+      <li>If a window is not found or a step fails, it stops and says where. It never keeps typing blindly.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Security and privacy</h2>
+<div class="grid g2">
+  <div class="card">
+    <h3>What it does</h3>
+    <ul class="check">
+      <li>Runs with Windows PowerShell, already included in Windows. Nothing is installed.</li>
+      <li>Works only on the local PC, with the windows already open on screen.</li>
+      <li>Uses the clipboard and simulated clicks/keys, the same as a person.</li>
+      <li>Reads the keyboard only to detect its own keys (<kbd>Del</kbd>, <kbd>Insert</kbd>). It is not a keylogger and records nothing typed.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>What it does NOT do</h3>
+    <ul class="check x">
+      <li>No internet or network connection of any kind.</li>
+      <li>No access to databases, servers or other systems.</li>
+      <li>Does not store PROs, terminals, customer names or note text on disk.</li>
+      <li>Does not modify the ERP, the intranet or any company file.</li>
+      <li>No administrator rights needed.</li>
+    </ul>
+  </div>
+</div>
+<p class="muted" style="margin-top:10px">The only files it writes are optional: screen coordinates for the clicks (numbers like "100, 115") and a troubleshooting log with step names only (for example "ERP found", "click on search box"). Both can be turned off and never contain bill data.</p>
+
+<h2>Before and after</h2>
+<div class="card tablewrap">
+<table>
+  <tr><th>Task</th><th>Manual</th><th>With Force Menu</th></tr>
+  <tr><td>Write the force note</td><td>Type it from memory</td><td>A few key presses, standard wording</td></tr>
+  <tr><td>Hold note</td><td>Type "Hold at term ### due to..." + reasons</td><td>Type the terminal number only</td></tr>
+  <tr><td>Look up the PRO (normal + old intranet)</td><td>Copy, switch windows, paste, search, repeat</td><td>One click</td></tr>
+  <tr><td>Enter notes in ERP and intranet</td><td>Open each screen, paste, check</td><td>One click each (or AUTO), then review and save</td></tr>
+</table>
+</div>
+
+<h2>Origin and status</h2>
+<div class="grid g3">
+  <div class="card"><div class="big">Built on</div><p class="muted">The note menu designed by me, plus the click sequences already used in a coworker's Excel tool ("Combined tool"), with extra safety checks added.</p></div>
+  <div class="card"><div class="big">Tested</div><p class="muted">Window detection and PRO lookup tested in the work environment. Note entry and AUTO are in testing.</p></div>
+  <div class="card"><div class="big">Next</div><p class="muted">Finish testing, then use it on real trouble bills under supervision before any wider use.</p></div>
+</div>
+
+<footer>
+  Force Menu &middot; internal productivity helper &middot; runs locally, no data in, no data out, nothing stored.
+</footer>
+
+</div>
+</body>
+</html>
